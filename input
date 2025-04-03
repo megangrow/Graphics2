@@ -1,0 +1,44 @@
+# textures
+texture gray solid (0.5 0.5 0.5)
+texture white solid (1 1 1)
+texture checker checkerboard (1 0 0.5) (0 0 1)
+texture gradient gradient (1 0 0) (0 0 1)
+texture water solid (0 0.5 1)
+texture earth image earth.png
+texture normal normal
+texture stripes custom (0 0.5 1) (1 0 1)
+
+# materials
+material ground diffuse gray false
+material light diffuse white true
+material center lambertian checker false
+material left diffuse gradient false
+material right glass water false
+material farright metallic normal false 0.2
+material farleft diffuse stripes false
+material back diffuse earth false
+
+# floor
+sphere (0 0 -1000) 1000 ground
+
+# light
+sphere (0 0 1012) 1000 light
+
+# spheres
+sphere (0 0 1) 1 center
+sphere (3 0 1) 1 left
+sphere (-3 0 1) 1 right
+sphere (-6 0 1) 1 farright
+sphere (6 0 1) 1 farleft
+sphere (-9 0 1) 1 back
+
+# triangle
+
+# mesh
+
+# rendering
+threads 1
+rays 10 100
+camera (4 -8 4) (0 0 1) (0 0 1) 90
+pixels 1280 720
+output sphere.png
