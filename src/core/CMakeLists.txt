@@ -1,4 +1,5 @@
 add_library(core
+  aabb.h aabb.cpp
   color.h
   constants.h
   hit.h hit.cpp

@@ -72,6 +72,9 @@ void Parser::parse(std::ifstream& input) {
             if (type == "material") {
                 parse_material(ss);
             }
+            else if (type == "mesh") {
+                parse_mesh(ss);
+            }
             else if (type == "texture") {
                 parse_texture(ss);
             }

@@ -25,20 +25,15 @@ sphere (0 0 -1000) 1000 ground
 sphere (0 0 1012) 1000 light
 
 # spheres
-sphere (0 0 1) 1 center
-sphere (3 0 1) 1 left
-sphere (-3 0 1) 1 right
-sphere (-6 0 1) 1 farright
-sphere (6 0 1) 1 farleft
-sphere (-9 0 1) 1 back
 
 # triangle
 
 # mesh
+mesh (0 0 0) pyramid.txt light
 
 # rendering
 threads 1
-rays 10 100
+rays 10 10
 camera (4 -8 4) (0 0 1) (0 0 1) 90
 pixels 1280 720
-output sphere.png
+output triangle.png
