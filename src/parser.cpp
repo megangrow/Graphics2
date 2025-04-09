@@ -15,6 +15,7 @@
 #include "normal.h"
 #include "custom.h"
 #include "image.h"
+#include "square.h"
 #include <algorithm>
 #include <iostream>
 #include <fstream>
@@ -86,6 +87,9 @@ void Parser::parse(std::ifstream& input) {
             }
             else if (type == "triangle") {
                parse_triangle(ss);
+            }
+            else if (type == "square") {
+                parse_square(ss);
             }
             else if (type == "output") {
                 parse_output(ss);
@@ -265,6 +269,20 @@ void Parser::parse_triangle(std::stringstream &ss) {
         throw std::runtime_error{"Malformed triangle"};
     }
 }
+
+void Parser::parse_square(std::stringstream &ss) {
+    Vector3D v0, h, v;
+    std::string material_name;
+    if (ss >> v0 >> h >> v >> material_name) {
+        const Material* material = get_material(material_name);
+        std::unique_ptr<Object> object = std::make_unique<Square>(v0, h, v, material);
+        world.add(std::move(object));
+    }
+    else {
+        throw std::runtime_error{"Malformed square"};
+    }
+}
+
 
 void Parser::parse_mesh(std::stringstream& ss) {
     // mesh position filename material_name

@@ -118,9 +118,8 @@ Color trace_path(const World& world, const Ray& ray, int depth) {
         return Black;
     }
     const Object *object = hit->object;
-    const Sphere *sphere = static_cast<const Sphere *>(object);
-    auto [u, v] = sphere->uv(*hit); // new
-    const Material *material = sphere->material;
+    auto [u, v] = object->uv(*hit); // new
+    const Material *material = object->material;
     Color color = material->texture->value(u, v); // new
     if (material->emitting) {
         return color;

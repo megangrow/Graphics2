@@ -1,5 +1,6 @@
 # textures
 texture gray solid (0.5 0.5 0.5)
+texture red solid (1 0 0)
 texture white solid (1 1 1)
 texture checker checkerboard (1 0 0.5) (0 0 1)
 texture gradient gradient (1 0 0) (0 0 1)
@@ -17,23 +18,31 @@ material right glass water false
 material farright metallic normal false 0.2
 material farleft diffuse stripes false
 material back diffuse earth false
+material mirror specular white false
+material glass glass white false
+material ball diffuse red true
 
 # floor
 sphere (0 0 -1000) 1000 ground
 
 # light
-sphere (0 0 1012) 1000 light
 
 # spheres
+sphere (1 1 1) 0.75 ball
 
-# triangle
+# triangles
+
+# squares
+square (-5 5 0) (10 0 0) (0 0 5) light
+square (-5 4.8 0) (0 -10 0) (0 0 5) mirror
+
 
 # mesh
-mesh (0 0 0) pyramid.txt light
+mesh (0 0 0) cube.txt glass
 
 # rendering
-threads 1
-rays 10 10
+threads 6
+rays 10 1000
 camera (4 -8 4) (0 0 1) (0 0 1) 90
 pixels 1280 720
 output triangle.png

@@ -34,6 +34,7 @@ private:
     Texture* get_texture(const std::string& texture);
     void parse_sphere(std::stringstream& ss);
     void parse_triangle(std::stringstream& ss);
+    void parse_square(std::stringstream &ss);
     void parse_camera(std::stringstream& ss);
     void parse_rays(std::stringstream& ss);
     void parse_pixels(std::stringstream& ss);
