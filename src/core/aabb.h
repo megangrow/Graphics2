@@ -7,8 +7,7 @@ class AABB {
 public:
     AABB(const Point3D& minimum, const Point3D& maximum);
     bool intersect(const Ray& ray) const;
-    AABB surrounding_box(const AABB& box0, const AABB& box1);
-
-private:
     Point3D minimum, maximum;
 };
+
+AABB surrounding_box(const AABB& box0, const AABB& box1);

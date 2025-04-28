@@ -9,6 +9,7 @@
 #include "parser.h"
 #include "random.h"
 #include "sphere.h"
+#include "material.h"
 
 void print_progress(long long ray_num, long long total_rays);
 void render(const World& world, const Camera& camera, int depth, int samples, int num_threads, Pixels& pixels, bool progress);

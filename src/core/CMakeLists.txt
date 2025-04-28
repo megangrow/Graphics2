@@ -4,6 +4,7 @@ add_library(core
   constants.h
   hit.h hit.cpp
   material.h material.cpp
+  noise.h noise.cpp
   object.h object.cpp
   point3d.h
   random.h random.cpp

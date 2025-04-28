@@ -1,10 +1,16 @@
 #include "sphere.h"
 #include "ray.h"
 #include "constants.h"
+#include "aabb.h"
 #include <cmath>
 
 Sphere::Sphere(const Point3D& center, double radius, const Material* material)
     :Object{material}, center{center}, radius{radius} {}
+
+AABB Sphere::bounding_box() const {
+    Point3D R{radius, radius, radius};
+    return AABB{center - R, center + R};
+}
 
 std::optional<double> Sphere::intersect(const Ray& ray) const {
     Vector3D OC = center - ray.origin;

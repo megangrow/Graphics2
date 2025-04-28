@@ -3,6 +3,7 @@ add_library(textures
         solid.h solid.cpp
         gradient.h gradient.cpp
         checkerboard.h checkerboard.cpp
+        marble.h marble.cpp
         normal.h normal.cpp
         custom.h custom.cpp
 )

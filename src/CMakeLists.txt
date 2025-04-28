@@ -5,6 +5,7 @@ add_subdirectory(materials)
 add_subdirectory(textures)
 
 add_library(raytracer
+  bvh.h bvh.cpp
   camera.h camera.cpp
   parser.h parser.cpp
   world.h world.cpp

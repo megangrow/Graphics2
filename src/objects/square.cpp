@@ -3,6 +3,7 @@
 #include "triangle.h"
 #include "hit.h"
 #include "ray.h"
+#include "aabb.h"
 
 Square::Square(const Point3D& vertex0, const Vector3D& horizontal,
                const Vector3D& vertical, const Material* material)
@@ -49,4 +50,8 @@ std::pair<double, double> Square::uv(const Hit &hit) const {
     double v = dot(P, vertical) / length(vertical);
     double magnitude = (u+v) / 2.0;
     return {u/magnitude, v/magnitude};
+}
+
+AABB Square::bounding_box() const {
+
 }

@@ -34,3 +34,11 @@ target_link_libraries(test-textures PRIVATE raytracer)
 # testing triangle
 add_executable(test-triangle test-triangle.cpp)
 target_link_libraries(test-triangle PRIVATE raytracer)
+
+# testing fog
+add_executable(test-fog test-fog.cpp)
+target_link_libraries(test-fog PRIVATE raytracer)
+
+# testing bvh
+add_executable(test-bvh test-bvh.cpp)
+target_link_libraries(test-bvh PRIVATE raytracer)

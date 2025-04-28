@@ -48,7 +48,7 @@ bool AABB::intersect(const Ray& ray) const {
     return true;
 }
 
-AABB AABB::surrounding_box(const AABB &box0, const AABB &box1) {
+AABB surrounding_box(const AABB &box0, const AABB &box1) {
     Point3D small{std::min(box0.minimum.x, box1.minimum.x),
                   std::min(box0.minimum.y, box1.minimum.y),
                   std::min(box0.minimum.z, box1.minimum.z)};

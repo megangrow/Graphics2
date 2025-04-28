@@ -1,48 +1,66 @@
 # textures
+texture dark-gray solid (0.3 0.3 0.3)
 texture gray solid (0.5 0.5 0.5)
-texture red solid (1 0 0)
 texture white solid (1 1 1)
-texture checker checkerboard (1 0 0.5) (0 0 1)
-texture gradient gradient (1 0 0) (0 0 1)
-texture water solid (0 0.5 1)
-texture earth image earth.png
-texture normal normal
-texture stripes custom (0 0.5 1) (1 0 1)
-
+texture red solid (1 0.1 0)
+texture blue solid (0 0.1 1)
+texture marble marble
 # materials
-material ground diffuse gray false
-material light diffuse white true
-material center lambertian checker false
-material left diffuse gradient false
-material right glass water false
-material farright metallic normal false 0.2
-material farleft diffuse stripes false
-material back diffuse earth false
-material mirror specular white false
 material glass glass white false
-material ball diffuse red true
+material red lambertian red true
+material blue lambertian blue true
+material marble lambertian marble false
+material floor lambertian gray false
+material light lambertian white true
+material mirror specular white false
+material fog isotropic white false
+
+# objects
+# Bottom row at z = 0.5
+sphere (-5 0 0.5) 0.5 red
+sphere (-4 0 0.5) 0.5 red
+sphere (-3 0 0.5) 0.5 red
+sphere (-2 0 0.5) 0.5 red
+sphere (-1 0 0.5) 0.5 red
+sphere (0 0 0.5) 0.5 red
+sphere (1 0 0.5) 0.5 red
+sphere (2 0 0.5) 0.5 red
+sphere (3 0 0.5) 0.5 red
+sphere (4 0 0.5) 0.5 red
+sphere (5 0 0.5) 0.5 red
+sphere (6 0 0.5) 0.5 red
+sphere (7 0 0.5) 0.5 red
+
+# Second row at z = 1.5
+sphere (-5 0 1.5) 0.5 red
+sphere (-4 0 1.5) 0.5 red
+sphere (-3 0 1.5) 0.5 red
+sphere (-2 0 1.5) 0.5 red
+sphere (-1 0 1.5) 0.5 red
+sphere (0 0 1.5) 0.5 red
+sphere (1 0 1.5) 0.5 red
+sphere (2 0 1.5) 0.5 red
+sphere (3 0 1.5) 0.5 red
+sphere (4 0 1.5) 0.5 red
+sphere (5 0 1.5) 0.5 red
+sphere (6 0 1.5) 0.5 red
+
+
+
+
+
+
+# constant_medium (0 0 3) 3 0.01 fog
 
 # floor
-sphere (0 0 -1000) 1000 ground
+sphere (0 0 -1000.1) 1000 floor
 
-# light
-
-# spheres
-sphere (1 1 1) 0.75 ball
-
-# triangles
-
-# squares
-square (-5 5 0) (10 0 0) (0 0 5) light
-square (-5 4.8 0) (0 -10 0) (0 0 5) mirror
-
-
-# mesh
-mesh (0 0 0) cube.txt glass
-
+# sky
+sphere (0 0 1020) 1000 light
 # rendering
-threads 6
-rays 10 1000
-camera (4 -8 4) (0 0 1) (0 0 1) 90
+threads 8
+rays 10 100
+camera (-5 -15 1) (0 0 1) (0 0 1) 45
+#camera (0 0 10) (1 0 0) (0 0 1) 45
 pixels 1280 720
-output triangle.png
+output fog.png

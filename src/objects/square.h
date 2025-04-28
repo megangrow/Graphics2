@@ -9,6 +9,7 @@ public:
     std::optional<double> intersect(const Ray& ray) const override;
     Hit construct_hit(const Ray& ray, double time) const override;
     std::pair<double, double> uv(const Hit& hit) const override;
+    AABB bounding_box() const override;
 private:
     Point3D vertex0, vertex1, vertex2, vertex3;
     Vector3D horizontal, vertical;

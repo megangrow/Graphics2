@@ -2,11 +2,23 @@
 #include "triangle.h"
 #include "ray.h"
 #include "constants.h"
+#include "aabb.h"
 #include "hit.cpp"
 
 Triangle::Triangle(const Point3D &vertex0, const Point3D &vertex1, const Point3D &vertex2, const Material *material)
     : Object{material}, vertex0{vertex0}, vertex1{vertex1}, vertex2{vertex2}, edge1{vertex1-vertex0}, edge2{vertex2-vertex0}, normal{unit(cross(edge1, edge2))} {}
 
+AABB Triangle::bounding_box() const {
+    double xmin = std::min(vertex0.x, std::min(vertex1.x, vertex2.x));
+    double xmax = std::max(vertex0.x, std::max(vertex1.x, vertex2.x));
+    double ymin = std::min(vertex0.y, std::min(vertex1.y, vertex2.y));
+    double ymax = std::max(vertex0.y, std::max(vertex1.y, vertex2.y));
+    double zmin = std::min(vertex0.z, std::min(vertex1.z, vertex2.z));
+    double zmax = std::max(vertex0.z, std::max(vertex1.z, vertex2.z));
+
+    Point3D min{xmin, ymin, zmin}, max{xmax, ymax, zmax};
+    return AABB{min, max};
+}
 
 std::optional<double> Triangle::intersect(const Ray &ray) const {
     // Moeller-Trumbore triangle intersection
