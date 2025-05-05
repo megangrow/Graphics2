@@ -1,66 +1,35 @@
-# textures
-texture dark-gray solid (0.3 0.3 0.3)
 texture gray solid (0.5 0.5 0.5)
 texture white solid (1 1 1)
-texture red solid (1 0.1 0)
-texture blue solid (0 0.1 1)
-texture marble marble
+
 # materials
-material glass glass white false
-material red lambertian red true
-material blue lambertian blue true
-material marble lambertian marble false
-material floor lambertian gray false
-material light lambertian white true
+material ground diffuse gray false
+material light diffuse white true
 material mirror specular white false
-material fog isotropic white false
-
-# objects
-# Bottom row at z = 0.5
-sphere (-5 0 0.5) 0.5 red
-sphere (-4 0 0.5) 0.5 red
-sphere (-3 0 0.5) 0.5 red
-sphere (-2 0 0.5) 0.5 red
-sphere (-1 0 0.5) 0.5 red
-sphere (0 0 0.5) 0.5 red
-sphere (1 0 0.5) 0.5 red
-sphere (2 0 0.5) 0.5 red
-sphere (3 0 0.5) 0.5 red
-sphere (4 0 0.5) 0.5 red
-sphere (5 0 0.5) 0.5 red
-sphere (6 0 0.5) 0.5 red
-sphere (7 0 0.5) 0.5 red
-
-# Second row at z = 1.5
-sphere (-5 0 1.5) 0.5 red
-sphere (-4 0 1.5) 0.5 red
-sphere (-3 0 1.5) 0.5 red
-sphere (-2 0 1.5) 0.5 red
-sphere (-1 0 1.5) 0.5 red
-sphere (0 0 1.5) 0.5 red
-sphere (1 0 1.5) 0.5 red
-sphere (2 0 1.5) 0.5 red
-sphere (3 0 1.5) 0.5 red
-sphere (4 0 1.5) 0.5 red
-sphere (5 0 1.5) 0.5 red
-sphere (6 0 1.5) 0.5 red
-
-
-
-
-
-
-# constant_medium (0 0 3) 3 0.01 fog
+material glass glass white false
+material ball diffuse white true
+material dispersion disperse white false
+material white diffuse white false
 
 # floor
-sphere (0 0 -1000.1) 1000 floor
+sphere (0 0 -1000) 1000 white
 
-# sky
-sphere (0 0 1020) 1000 light
+# light
+sphere (400 0 100) 100 light
+# sphere (0 0 1012) 100 light
+
+# spheres
+sphere (0 5 1.5) 0.5 ball
+
+# triangles
+
+# squares
+
+# mesh
+mesh (0 0 0) pyramid.txt dispersion
+
 # rendering
 threads 8
-rays 10 100
-camera (-5 -15 1) (0 0 1) (0 0 1) 45
-#camera (0 0 10) (1 0 0) (0 0 1) 45
+rays 10 1000
+camera (-2.5 -8 1.5) (0 0 1) (0 0 1) 60
 pixels 1280 720
-output fog.png
+output cameramoved.png

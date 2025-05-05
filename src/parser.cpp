@@ -19,6 +19,7 @@
 #include "isotropic.h"
 #include "constant_medium.h"
 #include "marble.h"
+#include "disperse.h"
 #include <algorithm>
 #include <iostream>
 #include <fstream>
@@ -157,6 +158,9 @@ void Parser::parse_material(std::stringstream& ss) {
     }
     else if (kind == "specular") {
         materials[name] = std::make_unique<Specular>(texture, emitting);
+    }
+    else if (kind == "disperse") {
+        materials[name] = std::make_unique<Disperse>(texture, emitting);
     }
     else if (kind == "metallic") {
         double fuzz;

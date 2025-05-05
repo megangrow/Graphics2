@@ -10,6 +10,7 @@
 #include "random.h"
 #include "parser.h"
 #include "bvh.h"
+#include "disperse.h"
 #include <iomanip>
 #include <cmath>
 #include <thread>
@@ -109,13 +110,25 @@ Color trace_path(const BVH& bvh, const Ray& ray, int depth) {
     auto [u, v] = object->uv(*hit);
     const Material* material = object->material;
     Color color = material->texture->value(u, v);
+
     if (material->emitting) {
         return color;
     }
+    // check if it is disperse
+    if (const Disperse* disperse = dynamic_cast<const Disperse*>(material)) {
+        Ray ray_r = disperse->scatter_dispersely(ray, *hit, 'r');
+        Ray ray_g = disperse->scatter_dispersely(ray, *hit, 'g');
+        Ray ray_b = disperse->scatter_dispersely(ray, *hit, 'b');
 
-    // more bounces!
-    Ray scattered = material->scatter(ray, hit.value());
-    return color * trace_path(bvh, scattered, depth-1);
+        double r = trace_path(bvh, ray_r, depth - 1).x;
+        double g = trace_path(bvh, ray_g, depth - 1).y;
+        double b = trace_path(bvh, ray_b, depth - 1).z;
+
+        return Color{r*2, g*2, b*2} * color;
+    } else {
+        Ray scattered = material->scatter(ray, *hit);
+        return color * trace_path(bvh, scattered, depth - 1);
+    }
 }
 
 

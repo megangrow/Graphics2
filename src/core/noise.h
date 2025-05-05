@@ -2,5 +2,5 @@
 
 namespace Perlin {
     double noise(double x, double y, double z);
-    double turbulence(double x, double y, double z, double depth);
+    double turbulence(double x, double y, double z, int depth);
 }

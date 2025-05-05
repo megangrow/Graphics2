@@ -1,5 +1,6 @@
 add_library(materials
   diffuse.h diffuse.cpp
+  disperse.h disperse.cpp
   glass.h glass.cpp
   lambertian.h lambertian.cpp
   metallic.h metallic.cpp

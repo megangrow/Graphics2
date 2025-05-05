@@ -1,15 +1,26 @@
-#include "glass.h"
+#include "disperse.h"
 #include "ray.h"
 #include "hit.h"
 #include "random.h"
-#include <algorithm>
 
-Glass::Glass(const Texture *texture, bool emitting)
-    :Material{texture, emitting} {}
+Disperse::Disperse(const Texture *texture, bool emitting)
+    : Material{texture, emitting} {}
 
-Ray Glass::scatter(const Ray& ray, const Hit& hit) const {
-    double n1 = 1.0;
-    double n2 = 1.5;
+
+Ray Disperse::scatter(const Ray &ray, const Hit &hit) const { }
+
+Ray Disperse::scatter_dispersely(const Ray &ray, const Hit &hit, char channel) const {
+    double n1 = 1.0; // ior of air
+    double n2;
+    if (channel == 'r') {
+        n2 = ior_r;
+    }
+    else if (channel == 'g') {
+        n2 = ior_g;
+    }
+    else {
+        n2 = ior_b;
+    }
 
     Vector3D normal = hit.normal;
     if (dot(ray.direction, hit.normal) > 0) {
@@ -26,6 +37,7 @@ Ray Glass::scatter(const Ray& ray, const Hit& hit) const {
     }
     else {
         Vector3D refracted = refract(ray.direction, normal, n1/n2);
+        refracted += random_unit_vector() * 0.01;
         return Ray{hit.position, refracted};
     }
 
